@@ -1,13 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType
 
-from .models import Link
-
-
-class LinkType(DjangoObjectType):
-    class Meta:
-        model = Link
-
+from .types import LinkType
 
 class Query(object):
     links = graphene.List(LinkType)

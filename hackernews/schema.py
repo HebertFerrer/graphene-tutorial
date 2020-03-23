@@ -2,11 +2,13 @@ import graphene
 import graphql_jwt
 
 from links import schema as links_schema
+from links import schema_relay as links_schema_relay
 from users import schema as users_schema
 
 
 class Query(
     links_schema.Query,
+    links_schema_relay.RelayQuery,
     users_schema.Query,
     graphene.ObjectType,
 ):
@@ -15,6 +17,7 @@ class Query(
 
 class Mutation(
     links_schema.Mutation,
+    links_schema_relay.RelayMutation,
     users_schema.Mutation,
     graphene.ObjectType,
 ):

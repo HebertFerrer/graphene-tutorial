@@ -1,4 +1,5 @@
 import graphene
+from graphql.error import GraphQLError
 
 from django.shortcuts import get_object_or_404
 
@@ -29,7 +30,7 @@ class CreateVote(graphene.Mutation):
     def mutate(self, info, link_id):
         user = info.context.user
         if user.is_anonymous:
-            return Exception('You must be logged in')
+            return GraphQLError('You must be logged in')
         link = get_object_or_404(Link, id=link_id)
         vote = Vote.objects.create(user=user, link=link)
         return CreateVote(vote=vote)
